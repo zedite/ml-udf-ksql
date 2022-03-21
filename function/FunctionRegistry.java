@@ -73,4 +73,22 @@ public class FunctionRegistry {
     KsqlFunction substring = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema
                                                                                   .STRING_SCHEMA,
                                                                               Schema
-        
+                                                                                  .INT32_SCHEMA,
+                                                                              Schema
+                                                                                  .INT32_SCHEMA),
+                                            "SUBSTRING", SubstringKudf
+                                                .class);
+    addFunction(substring);
+
+    KsqlFunction concat = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA,
+                                                                           Schema.STRING_SCHEMA),
+                                         "CONCAT", ConcatKudf.class);
+    addFunction(concat);
+
+    KsqlFunction trim = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA),
+                                       "TRIM", TrimKudf.class);
+    addFunction(trim);
+
+    KsqlFunction ifNull = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA,
+                                                                           Schema.STRING_SCHEMA),
+            
