@@ -42,4 +42,35 @@ import io.confluent.ksql.util.KsqlException;
 import org.apache.kafka.connect.data.Schema;
 
 import java.util.ArrayList;
-import java.util.Array
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FunctionRegistry {
+
+  private Map<String, KsqlFunction> ksqlFunctionMap = new HashMap<>();
+  private Map<String, KsqlAggFunctionDeterminer> ksqlAggregateFunctionMap = new HashMap<>();
+
+  public FunctionRegistry() {
+    init();
+  }
+
+  private void init() {
+
+    /***************************************
+     * String functions                     *
+     ****************************************/
+
+    KsqlFunction lcase = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA),
+                                        "LCASE", LCaseKudf.class);
+    addFunction(lcase);
+
+    KsqlFunction ucase = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA),
+                                        "UCASE", UCaseKudf.class);
+    addFunction(ucase);
+
+    KsqlFunction substring = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema
+                                                                                  .STRING_SCHEMA,
+                                                                              Schema
+        
