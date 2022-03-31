@@ -118,4 +118,25 @@ public class FunctionRegistry {
 
     KsqlFunction
         round =
-        new KsqlFunction(Schema.INT64_
+        new KsqlFunction(Schema.INT64_SCHEMA, Arrays.asList(Schema.FLOAT64_SCHEMA),
+                         "ROUND", RoundKudf.class);
+    addFunction(round);
+
+    KsqlFunction random = new KsqlFunction(Schema.FLOAT64_SCHEMA, new ArrayList<>(),
+                                           "RANDOM", RandomKudf.class);
+    addFunction(random);
+
+
+    /***************************************
+     * Date/Time functions                      *
+     ***************************************/
+    KsqlFunction timestampToString = new KsqlFunction(Schema.STRING_SCHEMA,
+                                                      Arrays.asList(Schema.INT64_SCHEMA,
+                                                                    Schema.STRING_SCHEMA),
+                                        "TIMESTAMPTOSTRING", TimestampToString.class);
+    addFunction(timestampToString);
+
+    KsqlFunction stringToTimestamp = new KsqlFunction(Schema.INT64_SCHEMA,
+                                                      Arrays.asList(Schema.STRING_SCHEMA,
+                                                                    Schema.STRING_SCHEMA),
+                             
