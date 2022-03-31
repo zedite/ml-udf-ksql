@@ -139,4 +139,32 @@ public class FunctionRegistry {
     KsqlFunction stringToTimestamp = new KsqlFunction(Schema.INT64_SCHEMA,
                                                       Arrays.asList(Schema.STRING_SCHEMA,
                                                                     Schema.STRING_SCHEMA),
-                             
+                                                      "STRINGTOTIMESTAMP",
+                                                      StringToTimestamp.class);
+    addFunction(stringToTimestamp);
+
+    /***************************************
+     * JSON functions                     *
+     ****************************************/
+
+    KsqlFunction getStringFromJson = new KsqlFunction(
+        Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA, Schema.STRING_SCHEMA),
+        "EXTRACTJSONFIELD", JsonExtractStringKudf.class);
+    addFunction(getStringFromJson);
+
+    /***************************************
+     * ML functions                     *
+     ****************************************/
+
+    KsqlFunction getAnomolyMl = new KsqlFunction(
+        Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA),
+        "ANOMALY", AnomalyKudf.class);
+    addFunction(getAnomolyMl);
+
+
+    /***************************************
+     * UDAFs                               *
+     ***************************************/
+
+    addAggregateFunctionDeterminer(new CountAggFunctionDeterminer());
+    addAggregateFunctionDeterminer(n
