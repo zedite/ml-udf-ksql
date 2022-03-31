@@ -91,4 +91,31 @@ public class FunctionRegistry {
 
     KsqlFunction ifNull = new KsqlFunction(Schema.STRING_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA,
                                                                            Schema.STRING_SCHEMA),
-            
+                                         "IFNULL", IfNullKudf.class);
+    addFunction(ifNull);
+
+    KsqlFunction len = new KsqlFunction(Schema.INT32_SCHEMA, Arrays.asList(Schema.STRING_SCHEMA),
+                                      "LEN", LenKudf.class);
+    addFunction(len);
+
+    /***************************************
+     * Math functions                      *
+     ***************************************/
+
+    KsqlFunction abs = new KsqlFunction(Schema.FLOAT64_SCHEMA, Arrays.asList(Schema.FLOAT64_SCHEMA),
+                                      "ABS", AbsKudf.class);
+    addFunction(abs);
+
+    KsqlFunction ceil = new KsqlFunction(Schema.FLOAT64_SCHEMA,
+                                         Arrays.asList(Schema.FLOAT64_SCHEMA),
+                                       "CEIL", CeilKudf.class);
+    addFunction(ceil);
+
+    KsqlFunction floor = new KsqlFunction(Schema.FLOAT64_SCHEMA,
+                                          Arrays.asList(Schema.FLOAT64_SCHEMA),
+                                        "FLOOR", FloorKudf.class);
+    addFunction(floor);
+
+    KsqlFunction
+        round =
+        new KsqlFunction(Schema.INT64_
