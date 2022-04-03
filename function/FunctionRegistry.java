@@ -167,4 +167,32 @@ public class FunctionRegistry {
      ***************************************/
 
     addAggregateFunctionDeterminer(new CountAggFunctionDeterminer());
-    addAggregateFunctionDeterminer(n
+    addAggregateFunctionDeterminer(new SumAggFunctionDeterminer());
+
+    addAggregateFunctionDeterminer(new MaxAggFunctionDeterminer());
+    addAggregateFunctionDeterminer(new MinAggFunctionDeterminer());
+
+  }
+
+  public KsqlFunction getFunction(String functionName) {
+    return ksqlFunctionMap.get(functionName);
+  }
+
+  private void addFunction(KsqlFunction ksqlFunction) {
+    ksqlFunctionMap.put(ksqlFunction.getFunctionName().toUpperCase(), ksqlFunction);
+  }
+
+  public boolean isAnAggregateFunction(String functionName) {
+    return ksqlAggregateFunctionMap.get(functionName) != null;
+  }
+
+  public KsqlAggregateFunction getAggregateFunction(String functionName, List<Expression>
+      functionArgs, Schema schema) {
+    KsqlAggFunctionDeterminer ksqlAggFunctionDeterminer = ksqlAggregateFunctionMap
+        .get(functionName);
+    if (ksqlAggFunctionDeterminer == null) {
+      throw new KsqlException("No aggregate function with name " + functionName + " exists!");
+    }
+    ExpressionTypeManager expressionTypeManager = new ExpressionTypeManager(schema, this);
+    Schema expressionType = expressionTypeManager.getExpressionType(functionArgs.get(0));
+    return ksqlAggFunctionDeterminer.getProperAggregateFunct
