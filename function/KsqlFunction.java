@@ -1,3 +1,4 @@
+
 /**
  * Copyright 2017 Confluent Inc.
  *
@@ -20,21 +21,35 @@ import org.apache.kafka.connect.data.Schema;
 
 import java.util.List;
 
+public class KsqlFunction {
 
-public abstract class KsqlAggFunctionDeterminer {
+  private final Schema returnType;
+  private final List<Schema> arguments;
+  private final String functionName;
+  private final Class kudfClass;
 
-  final String functionName;
-  final List<KsqlAggregateFunction> aggregateFunctionList;
-
-  public KsqlAggFunctionDeterminer(String functionName,
-                                   List<KsqlAggregateFunction> aggregateFunctionList) {
+  KsqlFunction(Schema returnType, List<Schema> arguments, String functionName,
+               Class kudfClass) {
+    this.returnType = returnType;
+    this.arguments = arguments;
     this.functionName = functionName;
-    this.aggregateFunctionList = aggregateFunctionList;
+    this.kudfClass = kudfClass;
   }
 
-  public abstract KsqlAggregateFunction getProperAggregateFunction(List<Schema> argTypeList);
+  public Schema getReturnType() {
+    return returnType;
+  }
 
-  protected List<KsqlAggregateFunction> getAggregateFunctionList() {
-    return aggregateFunctionList;
+  public List<Schema> getArguments() {
+    return arguments;
+  }
+
+  String getFunctionName() {
+    return functionName;
+  }
+
+
+  public Class getKudfClass() {
+    return kudfClass;
   }
 }
