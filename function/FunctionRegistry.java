@@ -195,4 +195,13 @@ public class FunctionRegistry {
     }
     ExpressionTypeManager expressionTypeManager = new ExpressionTypeManager(schema, this);
     Schema expressionType = expressionTypeManager.getExpressionType(functionArgs.get(0));
-    return ksqlAggFunctionDeterminer.getProperAggregateFunct
+    return ksqlAggFunctionDeterminer.getProperAggregateFunction(Arrays.asList(expressionType));
+  }
+
+  public void addAggregateFunctionDeterminer(KsqlAggFunctionDeterminer
+                                                        ksqlAggFunctionDeterminer) {
+    ksqlAggregateFunctionMap.put(ksqlAggFunctionDeterminer.functionName, ksqlAggFunctionDeterminer);
+  }
+
+
+}
