@@ -14,17 +14,7 @@
  * limitations under the License.
  **/
 
-package io.confluent.ksql.function;
+package io.confluent.ksql.function.udaf;
 
-import io.confluent.ksql.util.KsqlException;
-
-public class KsqlFunctionException extends KsqlException {
-
-  public KsqlFunctionException(String message) {
-    super(message);
-  }
-
-  public KsqlFunctionException(String s, Throwable throwable) {
-    super(s, throwable);
-  }
-}
+import io.confluent.ksql.function.KsqlAggregateFunction;
+import io.co
