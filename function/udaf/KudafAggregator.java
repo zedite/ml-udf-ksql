@@ -48,4 +48,37 @@ public class KudafAggregator implements UdafAggregator {
     aggValToAggFunctionMap.forEach((key, value) ->
         aggRowValue.getColumns().set(key,
             value.aggregate(rowValue.getColumns().get(value.getArgIndexInValue()),
-                aggRowValue.getCol
+                aggRowValue.getColumns().get(key)))
+    );
+    return aggRowValue;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public Merger<String, GenericRow> getMerger() {
+    return (key, aggRowOne, aggRowTwo) -> {
+      List<Object> columns = Stream.generate(String::new).limit(aggRowOne.getColumns().size())
+          .collect(Collectors.toList());
+      GenericRow mergedRow = new GenericRow(columns);
+
+      aggValToValColumnMap.forEach((columnIndex, value) -> {
+        if (aggRowOne.getColumns().get(value).toString().length() > 0) {
+          mergedRow.getColumns().set(columnIndex, aggRowOne.getColumns()
+              .get(value));
+        } else {
+          mergedRow.getColumns().set(columnIndex, aggRowTwo.getColumns()
+              .get(value));
+        }
+      });
+
+      aggValToAggFunctionMap.forEach((functionIndex, ksqlAggregateFunction) ->
+          mergedRow.getColumns().set(functionIndex, ksqlAggregateFunction.getMerger()
+          .apply(key,
+              aggRowOne.getColumns().get(functionIndex),
+              aggRowTwo.getColumns().get(functionIndex))));
+
+      return mergedRow;
+    };
+  }
+
+}
