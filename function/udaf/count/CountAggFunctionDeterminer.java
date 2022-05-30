@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2017 Confluent Inc.
  *
@@ -15,29 +14,20 @@
  * limitations under the License.
  **/
 
-package io.confluent.ksql.function.udaf;
+package io.confluent.ksql.function.udaf.count;
 
-import io.confluent.ksql.GenericRow;
-import org.apache.kafka.streams.kstream.Initializer;
+import io.confluent.ksql.function.KsqlAggFunctionDeterminer;
+import io.confluent.ksql.function.KsqlAggregateFunction;
+import org.apache.kafka.connect.data.Schema;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class KudafInitializer implements Initializer<GenericRow> {
+public class CountAggFunctionDeterminer extends KsqlAggFunctionDeterminer {
 
-  private final List initialGenericRowColumns;
-
-  public KudafInitializer(List initialGenericRowColumns) {
-    this.initialGenericRowColumns = initialGenericRowColumns;
+  public CountAggFunctionDeterminer() {
+    super("COUNT", Arrays.asList(new CountKudaf(-1)));
   }
 
   @Override
-  public GenericRow apply() {
-    List rowColumns = new ArrayList();
-    for (Object obj: initialGenericRowColumns) {
-      rowColumns.add(obj);
-    }
-    return new GenericRow(rowColumns);
-  }
-
-}
+  public KsqlAggre
