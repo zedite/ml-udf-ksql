@@ -26,4 +26,26 @@ import io.confluent.ksql.function.KsqlAggregateFunction;
 public class DoubleMaxKudaf extends KsqlAggregateFunction<Double, Double> {
 
   public DoubleMaxKudaf(Integer argIndexInValue) {
-    s
+    super(argIndexInValue, Double.MIN_VALUE, Schema.FLOAT64_SCHEMA,
+          Arrays.asList(Schema.FLOAT64_SCHEMA),
+          "MAX", DoubleMaxKudaf.class);
+  }
+
+  @Override
+  public Double aggregate(Double currentVal, Double currentAggVal) {
+    if (currentVal > currentAggVal) {
+      return currentVal;
+    }
+    return currentAggVal;
+  }
+
+  @Override
+  public Merger<String, Double> getMerger() {
+    return (aggKey, aggOne, aggTwo) -> {
+      if (aggOne > aggTwo) {
+        return aggOne;
+      }
+      return aggTwo;
+    };
+  }
+}
