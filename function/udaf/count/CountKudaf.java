@@ -1,3 +1,4 @@
+
 /**
  * Copyright 2017 Confluent Inc.
  *
@@ -16,21 +17,26 @@
 
 package io.confluent.ksql.function.udaf.count;
 
-import io.confluent.ksql.function.KsqlAggFunctionDeterminer;
 import io.confluent.ksql.function.KsqlAggregateFunction;
 import org.apache.kafka.connect.data.Schema;
+import org.apache.kafka.streams.kstream.Merger;
 
 import java.util.Arrays;
-import java.util.List;
 
-public class CountAggFunctionDeterminer extends KsqlAggFunctionDeterminer {
+public class CountKudaf extends KsqlAggregateFunction<Object, Long> {
 
-  public CountAggFunctionDeterminer() {
-    super("COUNT", Arrays.asList(new CountKudaf(-1)));
+  public CountKudaf(Integer argIndexInValue) {
+    super(argIndexInValue, 0L, Schema.INT64_SCHEMA, Arrays.asList(Schema.FLOAT64_SCHEMA),
+          "COUNT", CountKudaf.class);
   }
 
   @Override
-  public KsqlAggregateFunction getProperAggregateFunction(List<Schema> argTypeList) {
-    return getAggregateFunctionList().get(0);
+  public Long aggregate(Object currentVal, Long currentAggVal) {
+    return currentAggVal + 1;
+  }
+
+  @Override
+  public Merger<String, Long> getMerger() {
+    return (aggKey, aggOne, aggTwo) -> aggOne + aggTwo;
   }
 }

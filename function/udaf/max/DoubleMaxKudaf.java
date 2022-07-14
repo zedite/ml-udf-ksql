@@ -14,23 +14,16 @@
  * limitations under the License.
  **/
 
-package io.confluent.ksql.function.udaf.count;
+package io.confluent.ksql.function.udaf.max;
 
-import io.confluent.ksql.function.KsqlAggFunctionDeterminer;
-import io.confluent.ksql.function.KsqlAggregateFunction;
 import org.apache.kafka.connect.data.Schema;
+import org.apache.kafka.streams.kstream.Merger;
 
 import java.util.Arrays;
-import java.util.List;
 
-public class CountAggFunctionDeterminer extends KsqlAggFunctionDeterminer {
+import io.confluent.ksql.function.KsqlAggregateFunction;
 
-  public CountAggFunctionDeterminer() {
-    super("COUNT", Arrays.asList(new CountKudaf(-1)));
-  }
+public class DoubleMaxKudaf extends KsqlAggregateFunction<Double, Double> {
 
-  @Override
-  public KsqlAggregateFunction getProperAggregateFunction(List<Schema> argTypeList) {
-    return getAggregateFunctionList().get(0);
-  }
-}
+  public DoubleMaxKudaf(Integer argIndexInValue) {
+    s
