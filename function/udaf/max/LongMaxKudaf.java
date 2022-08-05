@@ -14,4 +14,38 @@
  * limitations under the License.
  **/
 
-package io.confluent.ksql.function
+package io.confluent.ksql.function.udaf.max;
+
+import org.apache.kafka.connect.data.Schema;
+import org.apache.kafka.streams.kstream.Merger;
+
+import java.util.Arrays;
+
+import io.confluent.ksql.function.KsqlAggregateFunction;
+
+public class LongMaxKudaf extends KsqlAggregateFunction<Long, Long> {
+
+  public LongMaxKudaf(Integer argIndexInValue) {
+    super(argIndexInValue, Long.MIN_VALUE, Schema.INT64_SCHEMA,
+          Arrays.asList(Schema.INT64_SCHEMA),
+          "MAX", LongMaxKudaf.class);
+  }
+
+  @Override
+  public Long aggregate(Long currentVal, Long currentAggVal) {
+    if (currentVal > currentAggVal) {
+      return currentVal;
+    }
+    return currentAggVal;
+  }
+
+  @Override
+  public Merger<String, Long> getMerger() {
+    return (aggKey, aggOne, aggTwo) -> {
+      if (aggOne > aggTwo) {
+        return aggOne;
+      }
+      return aggTwo;
+    };
+  }
+}
