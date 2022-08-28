@@ -1,3 +1,4 @@
+
 /**
  * Copyright 2017 Confluent Inc.
  *
@@ -23,16 +24,16 @@ import java.util.Arrays;
 
 import io.confluent.ksql.function.KsqlAggregateFunction;
 
-public class DoubleMinKudaf extends KsqlAggregateFunction<Double, Double> {
+public class LongMinKudaf extends KsqlAggregateFunction<Long, Long> {
 
-  public DoubleMinKudaf(Integer argIndexInValue) {
-    super(argIndexInValue, Double.MAX_VALUE, Schema.FLOAT64_SCHEMA,
-          Arrays.asList(Schema.FLOAT64_SCHEMA),
-          "MIN", DoubleMinKudaf.class);
+  public LongMinKudaf(Integer argIndexInValue) {
+    super(argIndexInValue, Long.MAX_VALUE, Schema.INT64_SCHEMA,
+          Arrays.asList(Schema.INT64_SCHEMA),
+          "MIN", LongMinKudaf.class);
   }
 
   @Override
-  public Double aggregate(Double currentVal, Double currentAggVal) {
+  public Long aggregate(Long currentVal, Long currentAggVal) {
     if (currentVal < currentAggVal) {
       return currentVal;
     }
@@ -40,7 +41,7 @@ public class DoubleMinKudaf extends KsqlAggregateFunction<Double, Double> {
   }
 
   @Override
-  public Merger<String, Double> getMerger() {
+  public Merger<String, Long> getMerger() {
     return (aggKey, aggOne, aggTwo) -> {
       if (aggOne < aggTwo) {
         return aggOne;
