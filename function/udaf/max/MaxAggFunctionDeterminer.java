@@ -36,4 +36,10 @@ public class MaxAggFunctionDeterminer extends KsqlAggFunctionDeterminer {
     // For now we only support aggregate functions with one arg.
     for (KsqlAggregateFunction ksqlAggregateFunction : getAggregateFunctionList()) {
       if (ksqlAggregateFunction.getArguments().get(0) == argTypeList.get(0)) {
-        return ks
+        return ksqlAggregateFunction;
+      }
+    }
+    throw new KsqlException("No Max aggregate function with " + argTypeList.get(0) + " "
+                            + " argument type exists!");
+  }
+}
