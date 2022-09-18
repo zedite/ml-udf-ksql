@@ -26,4 +26,20 @@ import java.util.List;
 
 public class SumAggFunctionDeterminer extends KsqlAggFunctionDeterminer {
 
-  public SumAggFunctionDeterminer
+  public SumAggFunctionDeterminer() {
+    super("SUM", Arrays.asList(new DoubleSumKudaf(-1), new LongSumKudaf(-1)));
+  }
+
+  @Override
+  public KsqlAggregateFunction getProperAggregateFunction(List<Schema> argTypeList) {
+    // For now we only support aggregate functions with one arg.
+    for (KsqlAggregateFunction ksqlAggregateFunction : getAggregateFunctionList()) {
+      if (ksqlAggregateFunction.getArguments().get(0) == argTypeList.get(0)) {
+        return ksqlAggregateFunction;
+      }
+    }
+    throw new KsqlException("No SUM aggregate function with " + argTypeList.get(0) + " "
+                           + " argument type exists!");
+  }
+
+}
