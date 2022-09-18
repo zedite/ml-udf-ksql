@@ -16,26 +16,14 @@
 
 package io.confluent.ksql.function.udaf.sum;
 
+import io.confluent.ksql.function.KsqlAggFunctionDeterminer;
 import io.confluent.ksql.function.KsqlAggregateFunction;
+import io.confluent.ksql.util.KsqlException;
 import org.apache.kafka.connect.data.Schema;
-import org.apache.kafka.streams.kstream.Merger;
 
 import java.util.Arrays;
+import java.util.List;
 
-public class LongSumKudaf extends KsqlAggregateFunction<Long, Long> {
+public class SumAggFunctionDeterminer extends KsqlAggFunctionDeterminer {
 
-  public LongSumKudaf(Integer argIndexInValue) {
-    super(argIndexInValue, 0L, Schema.INT64_SCHEMA,
-          Arrays.asList(Schema.INT64_SCHEMA), "SUM", LongSumKudaf.class);
-  }
-
-  @Override
-  public Long aggregate(Long currentVal, Long currentAggVal) {
-    return currentVal + currentAggVal;
-  }
-
-  @Override
-  public Merger<String, Long> getMerger() {
-    return (aggKey, aggOne, aggTwo) -> aggOne + aggTwo;
-  }
-}
+  public SumAggFunctionDeterminer
