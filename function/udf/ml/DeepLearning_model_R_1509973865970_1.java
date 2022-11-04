@@ -33,4 +33,33 @@ package io.confluent.ksql.function.udf.ml;
       cd tmpdir
       curl http:/localhost/127.0.0.1:54321/3/h2o-genmodel.jar > h2o-genmodel.jar
       curl http:/localhost/127.0.0.1:54321/3/Models.java/DeepLearning_model_R_1509973865970_1 > DeepLearning_model_R_1509973865970_1.java
-      javac -cp h2o-genmodel.jar -J-Xmx2g -J-XX:MaxPermSize=128m DeepLearning_model_R_15099738659
+      javac -cp h2o-genmodel.jar -J-Xmx2g -J-XX:MaxPermSize=128m DeepLearning_model_R_1509973865970_1.java
+
+     (Note:  Try java argument -XX:+PrintCompilation to show runtime JIT compiler behavior.)
+*/
+
+import java.util.Map;
+import hex.genmodel.GenModel;
+import hex.genmodel.annotations.ModelPojo;
+
+@ModelPojo(name="DeepLearning_model_R_1509973865970_1", algorithm="deeplearning")
+public class DeepLearning_model_R_1509973865970_1 extends GenModel {
+  public hex.ModelCategory getModelCategory() { return hex.ModelCategory.AutoEncoder; }
+  public boolean isSupervised() { return false; }
+  public int nfeatures() { return 210; }
+  public int nclasses() { return 210; }
+  // Thread-local storage for input neuron activation values.
+  final double[] NUMS = new double[210];
+  static class NORMMUL implements java.io.Serializable {
+    public static final double[] VALUES = new double[210];
+    static {
+      NORMMUL_0.fill(VALUES);
+    }
+    static final class NORMMUL_0 implements java.io.Serializable {
+      static final void fill(double[] sa) {
+        sa[0] = 0.20920502092050208;
+        sa[1] = 0.2066115702479339;
+        sa[2] = 0.2061855670103093;
+        sa[3] = 0.20449897750511245;
+        sa[4] = 0.20366598778004072;
+        sa[5] = 0.20449897750511248
