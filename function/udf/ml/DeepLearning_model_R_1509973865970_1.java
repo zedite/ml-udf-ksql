@@ -473,4 +473,27 @@ public class DeepLearning_model_R_1509973865970_1 extends GenModel {
         sa[193] = 4.411499999999999;
         sa[194] = 4.4345;
         sa[195] = 4.453;
-        sa[196] = 4.4
+        sa[196] = 4.4595;
+        sa[197] = 4.461499999999999;
+        sa[198] = 4.468999999999999;
+        sa[199] = 4.489;
+        sa[200] = 4.5135;
+        sa[201] = 4.557;
+        sa[202] = 4.6;
+        sa[203] = 4.652;
+        sa[204] = 4.7045;
+        sa[205] = 4.7635;
+        sa[206] = 4.8345;
+        sa[207] = 4.8965000000000005;
+        sa[208] = 4.9615;
+        sa[209] = 5.0275;
+      }
+    }
+  }
+  // Offset into the workspace for categorical variables.
+  public static final int[] CATOFFSETS = {0};
+  // Number of neurons for each layer.
+  public static final int[] NEURONS = {210,50,20,50,210};
+  public int getPredsSize() { return 210; }
+  public boolean isAutoEncoder() { return true; }
+  public String getHeader() { return "reconstr_C1,reconstr_C2,reconstr_C3,reconstr_C4,reconstr_C5,reconstr_C6,reconstr_C7,reconstr_C8,reconstr_C9,reconstr_C10,reconstr_C11,reconstr_C12,reconstr_C13,reconstr_C14,reconstr_C15,reconstr_C16,reconstr_C17,reconstr_C18,reconstr_C19,reconstr_C20,reconstr_C21,reconstr_C22,reconstr_C23,reconstr_C24,reconstr_C25,reconstr_C26,reconstr_C27,reconstr_C28,reconstr_C29,reconstr_C30,reconstr_C31,reconstr_C
