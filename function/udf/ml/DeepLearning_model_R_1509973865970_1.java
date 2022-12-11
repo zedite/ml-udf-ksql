@@ -517,4 +517,49 @@ public class DeepLearning_model_R_1509973865970_1 extends GenModel {
   public static final float[][] WEIGHT = new float[][] {
       /* Input */ DeepLearning_model_R_1509973865970_1_Weight_0.VALUES,
       /* Tanh */ DeepLearning_model_R_1509973865970_1_Weight_1.VALUES,
-      /* Tanh */ DeepLearning_model_R_1509973865970_1_Weig
+      /* Tanh */ DeepLearning_model_R_1509973865970_1_Weight_2.VALUES,
+      /* Tanh */ DeepLearning_model_R_1509973865970_1_Weight_3.VALUES,
+      /* Tanh */ DeepLearning_model_R_1509973865970_1_Weight_4.VALUES
+  };
+
+  // Names of columns used by model.
+  public static final String[] NAMES = NamesHolder_DeepLearning_model_R_1509973865970_1.VALUES;
+
+  // Column domains. The last array contains domain of response column.
+  public static final String[][] DOMAINS = new String[][] {
+    /* C1 */ null,
+    /* C2 */ null,
+    /* C3 */ null,
+    /* C4 */ null,
+    /* C5 */ null,
+    /* C6 */ null,
+    /* C7 */ null,
+    /* C8 */ null,
+    /* C9 */ null,
+    /* C10 */ null,
+    /* C11 */ null,
+    /* C12 */ null,
+    /* C13 */ null,
+    /* C14 */ null,
+    /* C15 */ null,
+    /* C16 */ null,
+    /* C17 */ null,
+    /* C18 */ null,
+    /* C19 */ null,
+    /* C20 */ null,
+    /* C21 */ null,
+    /* C22 */ null,
+    /* C23 */ null,
+    /* C24 */ null,
+    /* C25 */ null,
+    /* C26 */ null,
+    /* C27 */ null,
+    /* C28 */ null,
+    /* C29 */ null,
+    /* C30 */ null,
+    /* C31 */ null,
+    /* C32 */ null,
+    /* C33 */ null,
+    /* C34 */ null,
+    /* C35 */ null,
+    /* 
