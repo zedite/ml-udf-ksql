@@ -732,4 +732,31 @@ public class DeepLearning_model_R_1509973865970_1 extends GenModel {
     /* C203 */ null,
     /* C204 */ null,
     /* C205 */ null,
-    /* C206 *
+    /* C206 */ null,
+    /* C207 */ null,
+    /* C208 */ null,
+    /* C209 */ null,
+    /* C210 */ null
+  };
+
+  public DeepLearning_model_R_1509973865970_1() { super(NAMES,DOMAINS,null); }
+  public String getUUID() { return Long.toString(-8018014657874625505L); }
+
+  // Pass in data in a double[], pre-aligned to the Model's requirements.
+  // Jam predictions into the preds[] array; preds[0] is reserved for the
+  // main prediction (class for classifiers or value for regression),
+  // and remaining columns hold a probability distribution for classifiers.
+  public final double[] score0( double[] data, double[] preds ) {
+    java.util.Arrays.fill(preds,0);
+    java.util.Arrays.fill(NUMS,0);
+    int i = 0, ncats = 0;
+    final int n = data.length;
+    for(; i<n; ++i) {
+      NUMS[i] = Double.isNaN(data[i]) ? 0 : (data[i] - NORMSUB.VALUES[i])*NORMMUL.VALUES[i];
+    }
+    java.util.Arrays.fill(ACTIVATION[0],0);
+    for (i=0; i<NUMS.length; ++i) {
+      ACTIVATION[0][CATOFFSETS[CATOFFSETS.length-1] + i] = Double.isNaN(NUMS[i]) ? 0 : NUMS[i];
+    }
+    for (i=1; i<ACTIVATION.length; ++i) {
+      java.u
