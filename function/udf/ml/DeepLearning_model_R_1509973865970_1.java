@@ -787,4 +787,36 @@ public class DeepLearning_model_R_1509973865970_1 extends GenModel {
         for (int col = extra; col < cols; col++)
           res[row] += a[idx + col] * x[col];
         res[row] += y[row];
-   
+        idx += cols;
+      }
+      if (i<=ACTIVATION.length-1) {
+        for (int r=0; r<ACTIVATION[i].length; ++r) {
+          ACTIVATION[i][r] = 1 - 2 / (1 + Math.exp(2*ACTIVATION[i][r]));
+        }
+      }
+      if (i == ACTIVATION.length-1) {
+        for (int r=0; r<ACTIVATION[i].length; r++) {
+          if (Double.isNaN(ACTIVATION[i][r]))
+            throw new RuntimeException("Numerical instability, reconstructed NaN.");
+          preds[r] = ACTIVATION[i][r];
+        }
+        for (int k=0; k<210; ++k) {
+          preds[k] = preds[k] / NORMMUL.VALUES[k-0] + NORMSUB.VALUES[k-0];
+        }
+      }
+    }
+    return preds;
+  }
+}
+// Neuron bias values for Input layer
+class DeepLearning_model_R_1509973865970_1_Bias_0 implements java.io.Serializable {
+  public static final double[] VALUES = null;
+}
+// Neuron bias values for Tanh layer
+class DeepLearning_model_R_1509973865970_1_Bias_1 implements java.io.Serializable {
+  public static final double[] VALUES = new double[50];
+  static {
+    DeepLearning_model_R_1509973865970_1_Bias_1_0.fill(VALUES);
+  }
+  static final class DeepLearning_model_R_1509973865970_1_Bias_1_0 implements java.io.Serializable {
+    static final voi
