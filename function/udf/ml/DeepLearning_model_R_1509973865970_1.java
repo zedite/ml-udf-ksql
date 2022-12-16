@@ -759,4 +759,32 @@ public class DeepLearning_model_R_1509973865970_1 extends GenModel {
       ACTIVATION[0][CATOFFSETS[CATOFFSETS.length-1] + i] = Double.isNaN(NUMS[i]) ? 0 : NUMS[i];
     }
     for (i=1; i<ACTIVATION.length; ++i) {
-      java.u
+      java.util.Arrays.fill(ACTIVATION[i],0);
+      int cols = ACTIVATION[i-1].length;
+      int rows = ACTIVATION[i].length;
+      int extra=cols-cols%8;
+      int multiple = (cols/8)*8-1;
+      int idx = 0;
+      float[] a = WEIGHT[i];
+      double[] x = ACTIVATION[i-1];
+      double[] y = BIAS[i];
+      double[] res = ACTIVATION[i];
+      for (int row=0; row<rows; ++row) {
+        double psum0 = 0, psum1 = 0, psum2 = 0, psum3 = 0, psum4 = 0, psum5 = 0, psum6 = 0, psum7 = 0;
+        for (int col = 0; col < multiple; col += 8) {
+          int off = idx + col;
+          psum0 += a[off    ] * x[col    ];
+          psum1 += a[off + 1] * x[col + 1];
+          psum2 += a[off + 2] * x[col + 2];
+          psum3 += a[off + 3] * x[col + 3];
+          psum4 += a[off + 4] * x[col + 4];
+          psum5 += a[off + 5] * x[col + 5];
+          psum6 += a[off + 6] * x[col + 6];
+          psum7 += a[off + 7] * x[col + 7];
+        }
+        res[row] += psum0 + psum1 + psum2 + psum3;
+        res[row] += psum4 + psum5 + psum6 + psum7;
+        for (int col = extra; col < cols; col++)
+          res[row] += a[idx + col] * x[col];
+        res[row] += y[row];
+   
