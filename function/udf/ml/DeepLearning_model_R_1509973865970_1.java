@@ -874,4 +874,41 @@ class DeepLearning_model_R_1509973865970_1_Bias_1 implements java.io.Serializabl
   }
 }
 // Neuron bias values for Tanh layer
-class DeepLearning_mod
+class DeepLearning_model_R_1509973865970_1_Bias_2 implements java.io.Serializable {
+  public static final double[] VALUES = new double[20];
+  static {
+    DeepLearning_model_R_1509973865970_1_Bias_2_0.fill(VALUES);
+  }
+  static final class DeepLearning_model_R_1509973865970_1_Bias_2_0 implements java.io.Serializable {
+    static final void fill(double[] sa) {
+      sa[0] = 0.0;
+      sa[1] = 0.0;
+      sa[2] = 0.0;
+      sa[3] = 0.0;
+      sa[4] = 0.0;
+      sa[5] = 0.0;
+      sa[6] = 0.0;
+      sa[7] = 0.0;
+      sa[8] = 0.0;
+      sa[9] = 0.0;
+      sa[10] = 0.0;
+      sa[11] = 0.0;
+      sa[12] = 0.0;
+      sa[13] = 0.0;
+      sa[14] = 0.0;
+      sa[15] = 0.0;
+      sa[16] = 0.0;
+      sa[17] = 0.0;
+      sa[18] = 0.0;
+      sa[19] = 0.0;
+    }
+  }
+}
+// Neuron bias values for Tanh layer
+class DeepLearning_model_R_1509973865970_1_Bias_3 implements java.io.Serializable {
+  public static final double[] VALUES = new double[50];
+  static {
+    DeepLearning_model_R_1509973865970_1_Bias_3_0.fill(VALUES);
+  }
+  static final class DeepLearning_model_R_1509973865970_1_Bias_3_0 implements java.io.Serializable {
+    static fin
