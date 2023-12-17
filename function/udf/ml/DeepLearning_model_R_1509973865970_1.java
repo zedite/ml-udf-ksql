@@ -13713,4 +13713,37 @@ class DeepLearning_model_R_1509973865970_1_Weight_3 implements java.io.Serializa
       sa[976] = -0.19250907f;
       sa[977] = 0.10538074f;
       sa[978] = 0.16862582f;
-      sa
+      sa[979] = -0.28271452f;
+      sa[980] = -0.28587747f;
+      sa[981] = 0.11208814f;
+      sa[982] = -0.06484648f;
+      sa[983] = 0.16723213f;
+      sa[984] = 0.1500079f;
+      sa[985] = 0.168106f;
+      sa[986] = 0.21287923f;
+      sa[987] = 0.15568282f;
+      sa[988] = -0.101228505f;
+      sa[989] = 0.021158047f;
+      sa[990] = -0.13804412f;
+      sa[991] = -0.21919912f;
+      sa[992] = -0.059990086f;
+      sa[993] = -0.11717159f;
+      sa[994] = -0.08651045f;
+      sa[995] = 0.1182218f;
+      sa[996] = 0.106117114f;
+      sa[997] = 0.20286532f;
+      sa[998] = 0.2845543f;
+      sa[999] = -0.27271232f;
+    }
+  }
+}
+// Neuron weights connecting Tanh and Tanh layer
+class DeepLearning_model_R_1509973865970_1_Weight_4 implements java.io.Serializable {
+  public static final float[] VALUES = new float[10500];
+  static {
+    DeepLearning_model_R_1509973865970_1_Weight_4_0.fill(VALUES);
+    DeepLearning_model_R_1509973865970_1_Weight_4_1.fill(VALUES);
+    DeepLearning_model_R_1509973865970_1_Weight_4_2.fill(VALUES);
+    DeepLearning_model_R_1509973865970_1_Weight_4_3.fill(VALUES);
+  }
+  static final class DeepLearning_m
